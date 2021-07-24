@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5a25e70f-73b8-4309-98b1-a7757427d3f5/resourceGroups/migration/providers/Microsoft.Web/sites/udacitymigration",
+    "appService.deploySubpath": "."
+}

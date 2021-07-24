@@ -63,9 +63,18 @@ Complete a month cost analysis of each Azure resource to give an estimate total 
 
 | Azure Resource | Service Tier | Monthly Cost |
 | ------------ | ------------ | ------------ |
-| *Azure Postgres Database* |     |              |
-| *Azure Service Bus*   |         |              |
-| ...                   |         |              |
+| *Azure Postgres Database* |   basic compute gen5 & basic storage  |       $1.45       |
+| *Azure Service Bus*   |     |     < $0.01         |
+| *Azure App Service Plan* | Basic Tier | < $0.0.1 |
+| *Azure App Service*                   |      Free Tier   |       $0       |
+| *Azure Storage Account* | bandwidth & tables & tiered block blob | < $0.01 |
+| *Azure Cache for Redis* | Basic tier | $0.22 |
+| *SendGrid for Azure* | Free Tier | $0 |
 
 ## Architecture Explanation
-This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function.
+
+This architecture decouples app components. It is considered to be a better practice because it allows the app to scale better, and respond to sudden traffic spikes better. Instead of losing messages or crashing, the queue will allow the app to store the messages and process them with a bit of delay during spikes, acting as a buffer.
+
+For front-end Web App service is suitable for us since our project is small and we dont have specific configuration requirements from the underlying VM. Furthermore, it enabled us to be fast.
+
+For api part of the app Function Apps is more convenient choice because it, like Web App, also provides auto scaling capabilities and has built-in bindings to work with other Azure services, e.g. Service Bus. 
